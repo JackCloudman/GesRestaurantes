@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>GesRestaurantes | Restuarante</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <section class="my-5">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- jquery validation -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Restaurantes<small> formulario</small></h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="La lupita">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descripcion">Descripción</label>
+                                        <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="En este restaurante...">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="direccion">Dirección</label>
+                                        <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Calle 1 #42">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tipo de restaurante</label>
+                                        <select class="custom-select" name="tipo" id="tipo">
+                                            <th:block th:each="categoria : ${categorias}">
+                                            <option th:value="${categoria.getId()}"><div th:text="${categoria.getNombreCategoria()}"></div></option>
+                                            </th:block>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="imagen">Imagen del restaurante</label>
+                                        <input type="file" name="imagen" class="form-control" id="imagen" accept="image/png, image/jpeg">
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
