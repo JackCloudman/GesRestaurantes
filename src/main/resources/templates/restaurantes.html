@@ -35,7 +35,7 @@
                                         <td th:text="${restaurante.getId()}">...</td>
                                         <td th:text="${restaurante.getNombre()}">...</td>
                                         <td th:text="${restaurante.getDescripcion()}">...</td>
-                                        <td> <a class="btn btn-primary btn-sm" href="#">
+                                        <td> <a class="btn btn-primary btn-sm" th:href="${'/admin/restaurantes/'+restaurante.getId()}">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Editar

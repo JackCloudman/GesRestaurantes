@@ -47,4 +47,7 @@ public class RestauranteService {
     public Categoria registrarCategoria(Categoria c){
         return categoriaDAO.save(c);
     }
+    public void actualizarRestaurante(Restaurante r){
+        restauranteDAO.save(r);
+    }
 }

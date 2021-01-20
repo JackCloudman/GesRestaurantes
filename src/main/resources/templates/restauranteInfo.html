@@ -25,7 +25,7 @@
 
                                 <h3 class="profile-username text-center"><span th:text="${restaurante.getNombre()}"></span> </h3>
 
-                                <p class="text-muted text-center"><i class="fas fa-utensils"></i> <span th:text="${restaurante.getTipo()}"></span></p>
+                                <p class="text-muted text-center"><i class="fas fa-utensils"></i> <span th:text="${restaurante.getTipo().getNombreCategoria()}"></span></p>
 
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">

@@ -21,25 +21,26 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form method="post" enctype="multipart/form-data">
+                            <form method="post" enctype="multipart/form-data" th:object="${restaurante}">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="nombre">Nombre</label>
-                                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="La lupita">
+                                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="La lupita" th:value="*{nombre}">
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion">Descripción</label>
-                                        <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="En este restaurante...">
+                                        <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="En este restaurante..." th:value="*{descripcion}">
                                     </div>
                                     <div class="form-group">
                                         <label for="direccion">Dirección</label>
-                                        <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Calle 1 #42">
+                                        <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Calle 1 #42" th:value="*{direccion}">
                                     </div>
                                     <div class="form-group">
                                         <label>Tipo de restaurante</label>
                                         <select class="custom-select" name="tipo" id="tipo">
                                             <th:block th:each="categoria : ${categorias}">
-                                            <option th:value="${categoria.getId()}"><div th:text="${categoria.getNombreCategoria()}"></div></option>
+                                            <option th:value="${categoria.getId()}" th:selected="${restaurante.tipo!=null && categoria.getId()==restaurante.tipo.getId()}">
+                                                <div th:text="${categoria.getNombreCategoria()}"></div></option>
                                             </th:block>
                                         </select>
                                     </div>
