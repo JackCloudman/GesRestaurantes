@@ -1,13 +1,12 @@
 package com.ipn.escom.GesRestaurantes.services;
 
+import com.ipn.escom.GesRestaurantes.modelo.Calificacion;
 import com.ipn.escom.GesRestaurantes.modelo.Categoria;
 import com.ipn.escom.GesRestaurantes.modelo.Restaurante;
-import com.ipn.escom.GesRestaurantes.modelo.Usuario;
 import com.ipn.escom.GesRestaurantes.repositorio.CategoriaDAO;
+import com.ipn.escom.GesRestaurantes.repositorio.CalificacionDAO;
 import com.ipn.escom.GesRestaurantes.repositorio.RestauranteDAO;
-import com.ipn.escom.GesRestaurantes.repositorio.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +18,8 @@ public class RestauranteService {
     private RestauranteDAO restauranteDAO;
     @Autowired
     private CategoriaDAO categoriaDAO;
+    @Autowired
+    private CalificacionDAO calificacionDAO;
 
     public List<Restaurante> getRestaurantes() {
         return restauranteDAO.findAll();
@@ -49,5 +50,18 @@ public class RestauranteService {
     }
     public void actualizarRestaurante(Restaurante r){
         restauranteDAO.save(r);
+    }
+    public void actualizarEstrellas(Restaurante r){
+        List<Calificacion> calificaciones = calificacionDAO.findAllByRestauranteOrderByFechaDesc(r);
+        float estrellas = 0;
+        for (Calificacion c:
+             calificaciones) {
+            estrellas+=c.getEstrellas();
+        }
+        if(estrellas>0){
+            estrellas = estrellas/calificaciones.size();
+        }
+        r.setEstrellas(estrellas);
+        actualizarRestaurante(r);
     }
 }

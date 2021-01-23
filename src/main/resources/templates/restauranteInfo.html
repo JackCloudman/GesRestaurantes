@@ -29,7 +29,10 @@
 
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
-                                        <b>Comentarios</b> <a class="float-right" th:text="${comentarios.size()}"></a>
+                                        <b>Comentarios</b> <a class="float-right" th:text="${calificaciones.size()}"></a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Estrellas</b> <a class="float-right" th:text="${restaurante.getEstrellas()}"></a>
                                     </li>
                                 </ul>
                             </div>
@@ -66,31 +69,31 @@
                             <div class="card-header p-2">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Comentarios</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Tu comentario</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Tu calificacion</a></li>
                                 </ul>
                             </div><!-- /.card-header -->
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="active tab-pane" id="activity">
                                         <!-- Post -->
-                                        <th:block th:each="comentario : ${comentarios}">
+                                        <th:block th:each="calificacion : ${calificaciones}">
                                         <div class="post">
                                             <div class="user-block">
                                                 <img class="img-circle img-bordered-sm" src="/static/dist/img/default.jpg" alt="user image">
                                                 <span class="username">
-                          <a href="#" th:text="${comentario.getUsuario().getFullName()}"></a>
+                          <a href="#" th:text="${calificacion.getUsuario().getFullName()}"></a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
                         </span>
-                                                <span class="description">Publicado el día <span th:text="${comentario.getFecha()}"></span></span>
+                                                <span class="description">Publicado el día <span th:text="${calificacion.getFecha()}"></span></span>
                                             </div>
                                             <!-- /.user-block -->
-                                            <p th:text="${comentario.getComentario()}">
+                                            <p th:text="${calificacion.getComentario()}">
                                             </p>
 
                                         </div>
                                         </th:block>
-                                        <div th:if="${comentarios.isEmpty()}">
-                                            <h1>No hay comentarios aun</h1>
+                                        <div th:if="${calificaciones.isEmpty()}">
+                                            <h1>No hay calificaciones aun</h1>
                                         </div>
                                         <!-- /.post -->
                                     </div>
@@ -99,33 +102,19 @@
                                         <!-- Post -->
                                         <div class="post">
                                             <div class="user-block">
-                                                <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                                                <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                                                <span class="description">Shared publicly - 7:30 PM today</span>
+                                                <form method="post" th:object="${calificacionUsuario}">
+                                                    <div class="form-group">
+                                                        <label>Calificación <i class="fas fa-star"></i></label>
+                                                        <input type="number" class="kv-fa rating-loading" value="0" data-size="md"  title="" data-min="0" data-max="5" data-step="1" name="estrellas" required th:value="*{estrellas}">
+                                                        <br>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="comentario">Deja un comentario</label>
+                                                        <input type="text" name="comentario" class="form-control" id="comentario" placeholder="En este restaurante..." required th:value="*{comentario}">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                                </form>
                                             </div>
-                                            <!-- /.user-block -->
-                                            <p>
-                                                Lorem ipsum represents a long-held tradition for designers,
-                                                typographers and the like. Some people hate it and argue for
-                                                its demise, but others ignore the hate as they create awesome
-                                                tools to help create filler text for everyone from bacon lovers
-                                                to Charlie Sheen fans.
-                                            </p>
-
-                                            <p>
-                                                <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                                                <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                                                <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                                            </p>
-
-                                            <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
                                         </div>
                                         <!-- /.post -->
                                     </div>
@@ -141,6 +130,16 @@
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
+        <script>
+            $(document).ready(function() {
+                $('.kv-fa').rating({
+                    theme: 'krajee-fa',
+                    filledStar: '<i class="fa fa-star"></i>',
+                    emptyStar: '<i class="fa fa-star-o"></i>'
+                });
+            });
+
+        </script>
     </section>
 </div>
 

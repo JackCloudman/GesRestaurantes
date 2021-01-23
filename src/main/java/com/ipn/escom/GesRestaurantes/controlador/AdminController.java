@@ -90,8 +90,5 @@ public class AdminController {
         //model.addAttribute("categorias",restauranteService.getCategorias());
         return "redirect:/admin/restaurantes/categorias";
     }
-    private void saveImage(){
-
-    }
 
 }

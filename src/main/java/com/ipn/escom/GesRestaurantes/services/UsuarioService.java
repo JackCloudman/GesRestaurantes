@@ -19,6 +19,10 @@ public class UsuarioService {
         user.setPassword(null);
         return user;
     }
+    public Usuario getUsuarioAll(Usuario u){
+        Usuario user = usuarioDAO.getByUsername(u.getUsername());
+        return user;
+    }
     public List<Usuario> list() {
         return usuarioDAO.findAll();
     }

@@ -5,9 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name="comentarios")
+@Entity(name="calificaciones")
 @Data
-public class Comentario {
+public class Calificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,6 +21,8 @@ public class Comentario {
     private Usuario usuario;
 
     private String comentario;
+
+    private Integer estrellas;
 
     @Column(name="fecha", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date fecha;

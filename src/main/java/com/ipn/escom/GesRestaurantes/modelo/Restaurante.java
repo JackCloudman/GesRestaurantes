@@ -21,7 +21,7 @@ public class Restaurante {
     private Categoria tipo;
 
     private String foto;
-    //private float estrellas;
+    private float estrellas = 0;
     //private String horario;
 
     //private String latitud;
