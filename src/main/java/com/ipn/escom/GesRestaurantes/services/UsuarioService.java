@@ -19,6 +19,9 @@ public class UsuarioService {
         user.setPassword(null);
         return user;
     }
+    public Usuario getUserById(Usuario u){
+        return usuarioDAO.getById(u.getId());
+    }
     public Usuario getUsuarioAll(Usuario u){
         Usuario user = usuarioDAO.getByUsername(u.getUsername());
         return user;
@@ -37,5 +40,16 @@ public class UsuarioService {
         }catch(Exception e){
             return false;
         }
+    }
+    public void eliminar(Usuario u){
+        usuarioDAO.delete(u);
+    }
+    public void toggle(Usuario u){
+        if(u.isEnabled()){
+            u.setEnabled(false);
+        }else{
+            u.setEnabled(true);
+        }
+        usuarioDAO.save(u);
     }
 }

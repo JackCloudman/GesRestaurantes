@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioDAO extends JpaRepository<Usuario, Long> {
     Usuario getByUsername(String username);
+    Usuario getById(long id);
 }

@@ -1,6 +1,8 @@
 package com.ipn.escom.GesRestaurantes.modelo;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
@@ -16,7 +18,8 @@ public class Restaurante {
     private String direccion;
     private String descripcion;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToOne
     @JoinColumn(name = "tipo", referencedColumnName = "id")
     private Categoria tipo;
 

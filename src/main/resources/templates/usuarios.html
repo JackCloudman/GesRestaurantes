@@ -15,36 +15,39 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Listado de restaurantes <a href="/admin/reportes?name=restaurantes" class="btn btn-primary">Reporte</a></h3>
+                                <h3 class="card-title">Listado de usuarios <a href="/admin/reportes?name=usuarios" class="btn btn-primary">Reporte</a></h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <a style="margin-bottom: 10px;" class="btn btn-primary" href="/admin/restaurantes/new">Agregar Restaurante</a>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>id</th>
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
-                                        <th>Botones</th>
+                                        <th>Correo</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <th:block th:each="restaurante : ${restaurantes}">
-                                    <tr>
-                                        <td th:text="${restaurante.getId()}">...</td>
-                                        <td th:text="${restaurante.getNombre()}">...</td>
-                                        <td th:text="${restaurante.getDescripcion()}">...</td>
-                                        <td> <a class="btn btn-primary btn-sm" th:href="${'/admin/restaurantes/'+restaurante.getId()}">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Editar
-                                        </a> <a class="btn btn-danger btn-sm" th:href="${'/admin/restaurantes/'+restaurante.getId()+'/delete'}" style="margin-left:10px">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Borrar
-                                        </a></td>
-                                    </tr>
+                                    <th:block th:each="usuario: ${usuarios}">
+                                        <tr>
+                                            <td th:text="${usuario.getId()}">...</td>
+                                            <td th:text="${usuario.getFullName()}">...</td>
+                                            <td th:text="${usuario.getUsername()}">...</td>
+                                            <td th:text="${usuario.isEnabled()?'Habilitado':'Deshabilitado'}">...</td>
+                                            <td> <a class="btn btn-primary btn-danger" th:href="${'/admin/usuarios/'+usuario.getId()+'/delete'}">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                Eliminar
+                                            </a> <a class="btn btn-primary" th:href="${'/admin/usuarios/'+usuario.getId()+'/toggle'}" style="margin-left:10px">
+                                                <i class="fas fa-unlock-alt"></i>
+                                                <th:block th:switch="${usuario.isEnabled()}">
+                                                    <th:block th:case="true">Deshabilitar</th:block>
+                                                    <th:block th:case="*">Habilitar</th:block>
+                                                </th:block>
+                                            </a></td>
+                                        </tr>
                                     </th:block>
                                     </tbody>
                                 </table>

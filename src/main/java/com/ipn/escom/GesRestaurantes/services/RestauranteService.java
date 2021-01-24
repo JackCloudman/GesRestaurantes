@@ -64,4 +64,10 @@ public class RestauranteService {
         r.setEstrellas(estrellas);
         actualizarRestaurante(r);
     }
+    public void eliminarRestaurante(Restaurante r){
+        restauranteDAO.delete(r);
+    }
+    public void eliminarCategoria(Categoria c){
+        categoriaDAO.delete(c);
+    }
 }

@@ -21,9 +21,16 @@ public class CalificacionService {
     public Calificacion getUserComment(Restaurante r, Usuario u){
         return calificacionDAO.findByRestauranteAndUsuario(r,u);
     }
+    public List<Calificacion> getAll(){
+        return calificacionDAO.findAll();
+    }
     public Calificacion guardar(Calificacion c){
 
         c.setFecha(new Date());
         return calificacionDAO.save(c);
+    }
+    public void borrarComentario(Calificacion c){
+        calificacionDAO.delete(c);
+
     }
 }
