@@ -60,7 +60,7 @@ public class AdminController {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         restaurante.setFoto(fileName);
         restaurante = restauranteService.registrar(restaurante);
-        String uploadDir = "restaurantes-photos/" + restaurante.getId();
+        String uploadDir = "restaurantes_photos/" + restaurante.getId();
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         return "redirect:/admin/restaurantes";
@@ -93,7 +93,7 @@ public class AdminController {
         }
         restaurante = restauranteService.registrar(restaurante);
 
-        String uploadDir = "restaurantes-photos/" + restaurante.getId();
+        String uploadDir = "restaurantes_photos/" + restaurante.getId();
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         return "redirect:/admin/restaurantes";
     }
