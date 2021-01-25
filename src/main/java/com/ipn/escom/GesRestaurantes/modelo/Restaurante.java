@@ -33,7 +33,7 @@ public class Restaurante {
     public String getPhotosImagePath() {
         if (foto == null) return null;
 
-        return "/restaurantes-photos/" + id + "/" + foto;
+        return "/restaurantes_photos/" + id + "/" + foto;
     }
 
 }
