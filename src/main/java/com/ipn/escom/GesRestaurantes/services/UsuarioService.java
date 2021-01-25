@@ -41,6 +41,9 @@ public class UsuarioService {
             return false;
         }
     }
+    public String getNombre(String username){
+        return usuarioDAO.getByUsername(username).getFullName();
+    }
     public void eliminar(Usuario u){
         usuarioDAO.delete(u);
     }

@@ -73,26 +73,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     </div>
                 </ul>
-
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-0 ml-md-3">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" name="restaurante" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
             </div>
             <!-- Right navbar links -->
             <div sec:authorize="isAuthenticated()" class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a style="color: #459795!important;font-weight: 450;" class="nav-link" data-toggle="dropdown" href="#">
-                        Jack Cloudman <i class="fas fa-chevron-down"></i>
+                    <a style="color: #459795!important;font-weight: 450;" class="nav-link" data-toggle="dropdown" href="#" >
+                        <span  th:text="${@usuarioService.getNombre(#authentication.getName())}">Jack Cloudman</span> <i class="fas fa-chevron-down"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
@@ -100,10 +88,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="media">
                                 <img src="/static/dist/img/default.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
-                                    <h3 class="dropdown-item-title" style="color:#459795;" th:text ="${#authentication.getPrincipal()}">
+                                    <h3 class="dropdown-item-title" style="color:#459795;" th:text="${@usuarioService.getNombre(#authentication.getName())}">
                                         Jack Cloudman
                                     </h3>
-                                    <p class="text-sm">Ver perfil</p>
                                 </div>
                             </div>
                             <!-- Message End -->

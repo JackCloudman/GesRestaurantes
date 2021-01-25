@@ -40,7 +40,7 @@ public class ReportesService {
     private String url;
     public byte[] getRestaurantes(String nombreReporte){
         try {
-            Resource resource = new ClassPathResource("/static/reportes/"+nombreReporte+".jasper");
+            Resource resource = new ClassPathResource("static/reportes/"+nombreReporte+".jasper");
             File reporte = resource.getFile();
             byte[] bytes = JasperRunManager.runReportToPdf(reporte.getPath(),null, obtenerConexion());
             return bytes;
