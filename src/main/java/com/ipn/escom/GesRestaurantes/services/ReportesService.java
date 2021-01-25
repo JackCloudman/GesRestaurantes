@@ -5,6 +5,7 @@ import com.ipn.escom.GesRestaurantes.repositorio.RestauranteDAO;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,12 @@ public class ReportesService {
     @Autowired
     private RestauranteDAO restauranteDAO;
     private Connection con;
+    @Value("${spring.datasource.username}")
+    private String usr;
+    @Value("${spring.datasource.password}")
+    private String pass;
+    @Value("${spring.datasource.url}")
+    private String url;
     public byte[] getRestaurantes(String nombreReporte){
         try {
             Resource resource = new ClassPathResource("/static/reportes/"+nombreReporte+".jasper");
@@ -45,10 +52,7 @@ public class ReportesService {
     }
 
     public Connection obtenerConexion() {
-        String usr = "postgres";
-        String pass = "1234";
         String driver = "org.postgresql.Driver";
-        String url = "jdbc:postgresql://localhost:5432/ProyectoFinal";
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, pass);
