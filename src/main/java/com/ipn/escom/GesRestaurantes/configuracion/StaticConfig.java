@@ -13,7 +13,7 @@ public class StaticConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        exposeDirectory("restaurantes-photos", registry);
+        exposeDirectory("restaurantes_photos", registry);
     }
     private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
         Path uploadDir = Paths.get(dirName);
