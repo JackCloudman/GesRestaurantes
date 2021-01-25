@@ -26,7 +26,7 @@ public class EnviarEmail {
             propiedades.setProperty("mail.smtp.host", "smtp.gmail.com");
             propiedades.setProperty("mail.smtp.starttls.enable", "true"); //o quitar enable
             propiedades.setProperty("mail.smtp.port", "587");
-            propiedades.setProperty("mail.smtp.user", "wad.productos@gmail.com");
+            propiedades.setProperty("mail.smtp.user", "gesrestaurantes@gmail.com");
             propiedades.setProperty("mail.smtp.auth", "true");
 
             Session  session = Session.getDefaultInstance(propiedades);
