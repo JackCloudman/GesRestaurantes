@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -40,12 +41,11 @@ public class ReportesService {
     private String url;
     public byte[] getRestaurantes(String nombreReporte){
         try {
-            Resource resource = new ClassPathResource("static/reportes/"+nombreReporte+".jasper");
-            File reporte = resource.getFile();
-            byte[] bytes = JasperRunManager.runReportToPdf(reporte.getPath(),null, obtenerConexion());
+            InputStream resource = ReportesService.class.getResourceAsStream("/static/reportes/"+nombreReporte+".jasper");
+            File file = new File(nombreReporte+".jasper");
+            byte[] bytes = JasperRunManager.runReportToPdf(resource,null, obtenerConexion());
             return bytes;
-
-        } catch (IOException | JRException ex) {
+        } catch (JRException ex) {
             Logger.getLogger(ReportesService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
